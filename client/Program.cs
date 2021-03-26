@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using client.Services;
 
 namespace client
 {
-    internal class Program
+    class Program
     {
-        public static async Task Main(string[] args)
+        static async Task Main(string[] args)
         {
             ISocketService socketService = new SocketService();
             var socket = await socketService.Connect("127.0.0.1", 8765);

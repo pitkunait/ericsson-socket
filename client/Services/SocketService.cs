@@ -8,9 +8,13 @@ namespace client.Services
 {
     public class SocketService : ISocketService
     {
+        public SocketService(ILogger<int> logger)
+        {
+            // logger.
+        }
         public async Task<Socket> Connect(string host, int port)
         {
-            Console.Write("Trying to connect");
+            Console.Write($"Trying to connect to {host}:{port}");
             while (true)
             {
                 try
@@ -44,5 +48,9 @@ namespace client.Services
             var result = await socket.ReceiveAsync(buffer, SocketFlags.None);
             return buffer.Array != null ? Encoding.ASCII.GetString(buffer.Array, 0, result) : "";
         }
+    }
+
+    public interface ILogger<T>
+    {
     }
 }

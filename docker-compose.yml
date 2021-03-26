@@ -4,3 +4,5 @@ services:
     build: server
     ports:
       - "8765:8765"
+  client:
+    build: client
