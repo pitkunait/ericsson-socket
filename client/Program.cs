@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using client.Services;
 
@@ -9,8 +10,15 @@ namespace client
         static async Task Main(string[] args)
         {
             ISocketService socketService = new SocketService();
-            var socket = await socketService.Connect("127.0.0.1", 8765);
-            await socketService.ListenForever(socket);
+            Socket socket = null;
+
+            while (!socketService.IsConnected(socket))
+            {
+                socket = await socketService.Connect("stdin-server", 8765);
+                await socketService.ListenForever(socket);
+                Console.WriteLine("\nDisconnected.");
+                await Task.Delay(1000);
+            }
         }
     }
 }
