@@ -1,0 +1,6 @@
+/Users/vash/RiderProjects/Ericsson/client/client/bin/Debug/client.exe
+/Users/vash/RiderProjects/Ericsson/client/client/bin/Debug/client.pdb
+/Users/vash/RiderProjects/Ericsson/client/client/obj/Debug/client.csprojAssemblyReference.cache
+/Users/vash/RiderProjects/Ericsson/client/client/obj/Debug/client.csproj.CoreCompileInputs.cache
+/Users/vash/RiderProjects/Ericsson/client/client/obj/Debug/client.exe
+/Users/vash/RiderProjects/Ericsson/client/client/obj/Debug/client.pdb
