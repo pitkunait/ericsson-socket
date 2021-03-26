@@ -1,27 +1,24 @@
 import asyncio
 
-import websockets
-
 from utils.getche import getche
 
 
-class WSServer:
+class Server:
 
-    async def read_stdin(self, websocket, path):
+    async def echo_server(self, reader, writer):
         while True:
             char = getche()
-            try:
-                await websocket.send(char)
-            except Exception:
-                await asyncio.sleep(0)
+            writer.write(bytes(char, encoding="UTF-8"))
+            await writer.drain()
+
+    async def serve(self, host, port):
+        socket = await asyncio.start_server(self.echo_server, host, port)
+        await socket.serve_forever()
 
     def run(self):
-
-        start_server = websockets.serve(self.read_stdin, "", 8765)
-        asyncio.get_event_loop().run_until_complete(start_server)
-        asyncio.get_event_loop().run_forever()
+        asyncio.run(self.serve("", 8765))
 
 
 if __name__ == '__main__':
-    server = WSServer()
+    server = Server()
     server.run()
