@@ -2,7 +2,14 @@ version: '3.1'
 services:
   server:
     build: server
+    tty: true
+    stdin_open: true
     ports:
       - "8765:8765"
   client:
     build: client
+    environment:
+      HOST: server
+      PORT: 8765
+    depends_on:
+      - server
