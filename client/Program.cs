@@ -14,7 +14,9 @@ namespace client
 
             while (!socketService.IsConnected(socket))
             {
-                socket = await socketService.Connect("stdin-server", 8765);
+                string host = Environment.GetEnvironmentVariable("HOST");
+                string port = Environment.GetEnvironmentVariable("PORT");
+                socket = await socketService.Connect(host, port);
                 await socketService.ListenForever(socket);
                 Console.WriteLine("\nDisconnected.");
                 await Task.Delay(1000);

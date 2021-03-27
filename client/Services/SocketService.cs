@@ -8,7 +8,7 @@ namespace client.Services
 {
     public class SocketService : ISocketService
     {
-        public async Task<Socket> Connect(string host, int port)
+        public async Task<Socket> Connect(string host, string port)
         {
             Console.Write($"\nTrying to connect to {host}:{port}");
             while (true)
@@ -16,7 +16,7 @@ namespace client.Services
                 try
                 {
                     var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                    var endpoint = new DnsEndPoint(host, port);
+                    var endpoint = new DnsEndPoint(host, int.Parse(port));
                     Console.Write(".");
                     await socket.ConnectAsync(endpoint);
                     Console.WriteLine("\nConnected.");
